@@ -111,11 +111,47 @@ class ViewController: UIViewController {
     }
     
     @IBAction func startEnginePressed(_ sender: UIButton) {
+        let timesDriven = selectedCar.timesDriven?.intValue
+        selectedCar.timesDriven = NSNumber(value: timesDriven! + 1)
+        selectedCar.lastStarted = NSDate()
         
+        do {
+            try context.save()
+            insertDataFrom(selectedCar: selectedCar)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @IBAction func rateItPressed(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Rate it", message: "Rate this car please", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { action in
+            let textField = alertController.textFields?[0]
+            self.update(rating: textField!.text!)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
+        alertController.addTextField { textField in
+            textField.keyboardType = .numberPad
+        }
+        alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func update(rating: String) {
+        selectedCar.rating = NSNumber(value: Double(rating)!)
+        
+        do {
+            try context.save()
+            insertDataFrom(selectedCar: selectedCar)
+        } catch {
+            let alertController = UIAlertController(title: "Wrong value", message: "Wrong input", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default)
+            alertController.addAction(okAction)
+            present(alertController,animated: true, completion: nil)
+            print(error.localizedDescription)
+        }
     }
 }
 
