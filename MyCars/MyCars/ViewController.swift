@@ -11,6 +11,7 @@ class ViewController: UIViewController {
     
     
     lazy var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var selectedCar: Car!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var markLabel: UILabel!
@@ -24,7 +25,19 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        getDataFromFile()
+        
+        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+        let mark = segmentedControl.titleForSegment(at: 0)
+        fetchRequest.predicate = NSPredicate(format: "mark == %@", mark!)
+        do {
+            let results = try context.fetch(fetchRequest)
+            selectedCar = results[0]
+            insertDataFrom(selectedCar: selectedCar)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
         
     }
     
@@ -32,6 +45,21 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func insertDataFrom(selectedCar: Car) {
+        carImageView.image = UIImage(data: selectedCar.imageData! as Data)
+        markLabel.text = selectedCar.mark
+        modelLabel.text = selectedCar.model
+        myChoiceImageView.isHidden = !(selectedCar.myChoice?.boolValue)!
+        ratingLabel.text = "Rating: \(selectedCar.rating!.doubleValue) / 10.0"
+        numberOfTripsLabel.text = "Number of trips: \(selectedCar.timesDriven!.intValue)"
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        lastTimeStartedLabel.text = "Last time started: \(dateFormatter.string(from: selectedCar.lastStarted! as Date))"
+        segmentedControl.tintColor = (selectedCar.tintColor as! UIColor)
+    }
+    
     func getDataFromFile() {
         let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "mark != nil")
