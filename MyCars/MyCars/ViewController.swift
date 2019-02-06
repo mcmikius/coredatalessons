@@ -107,7 +107,17 @@ class ViewController: UIViewController {
     }
     
     @IBAction func segmentedCtrlPressed(_ sender: UISegmentedControl) {
+        let mark = sender.titleForSegment(at: sender.selectedSegmentIndex)
+        let fetchRequest: NSFetchRequest<Car> = Car.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "mark == %@", mark!)
         
+        do {
+            let results = try context.fetch(fetchRequest)
+            selectedCar = results[0]
+            insertDataFrom(selectedCar: selectedCar)
+        } catch {
+            print(error.localizedDescription)
+        }
     }
     
     @IBAction func startEnginePressed(_ sender: UIButton) {
