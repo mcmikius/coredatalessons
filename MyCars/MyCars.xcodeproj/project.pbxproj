@@ -14,6 +14,8 @@
 		352762DF1C0AEF3100A3BABA /* MyCars.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 359705A71C08159E00D13FE9 /* MyCars.xcdatamodeld */; };
 		352762E01C0AEF3400A3BABA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359705A01C08159E00D13FE9 /* AppDelegate.swift */; };
 		352762E11C0AEF3600A3BABA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359705A21C08159E00D13FE9 /* ViewController.swift */; };
+		FBE0694C220B3DDF001B1117 /* Car+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0694A220B3DDF001B1117 /* Car+CoreDataClass.swift */; };
+		FBE0694D220B3DDF001B1117 /* Car+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE0694B220B3DDF001B1117 /* Car+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		359705AF1C08159E00D13FE9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		359705B91C0829ED00D13FE9 /* data.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = data.plist; sourceTree = "<group>"; };
 		35F2F4DF1C084725000E1CB3 /* MyCars.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCars.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBE0694A220B3DDF001B1117 /* Car+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataClass.swift"; sourceTree = "<group>"; };
+		FBE0694B220B3DDF001B1117 /* Car+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Car+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,8 @@
 		3597059F1C08159E00D13FE9 /* MyCars */ = {
 			isa = PBXGroup;
 			children = (
+				FBE0694A220B3DDF001B1117 /* Car+CoreDataClass.swift */,
+				FBE0694B220B3DDF001B1117 /* Car+CoreDataProperties.swift */,
 				359705A01C08159E00D13FE9 /* AppDelegate.swift */,
 				359705A21C08159E00D13FE9 /* ViewController.swift */,
 				359705AA1C08159E00D13FE9 /* Assets.xcassets */,
@@ -102,7 +108,8 @@
 				TargetAttributes = {
 					35F2F4DE1C084725000E1CB3 = {
 						CreatedOnToolsVersion = 7.1.1;
-						LastSwiftMigration = 0900;
+						DevelopmentTeam = GYWWW55376;
+						LastSwiftMigration = 1010;
 					};
 				};
 			};
@@ -143,6 +150,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBE0694C220B3DDF001B1117 /* Car+CoreDataClass.swift in Sources */,
+				FBE0694D220B3DDF001B1117 /* Car+CoreDataProperties.swift in Sources */,
 				352762E11C0AEF3600A3BABA /* ViewController.swift in Sources */,
 				352762E01C0AEF3400A3BABA /* AppDelegate.swift in Sources */,
 				352762DF1C0AEF3100A3BABA /* MyCars.xcdatamodeld in Sources */,
@@ -273,10 +282,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = GYWWW55376;
 				INFOPLIST_FILE = MyCars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.swiftbook.MyCars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcmikius.MyCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
 			};
@@ -286,9 +299,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = GYWWW55376;
 				INFOPLIST_FILE = MyCars/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ru.swiftbook.MyCars;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcmikius.MyCars;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;

@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  MyCars
 //
-//  Created by Ivan Akulov on 07/11/16.
-//  Copyright © 2016 Ivan Akulov. All rights reserved.
 //
 
 import UIKit
