@@ -47,6 +47,17 @@ class TableViewController: UITableViewController {
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest:NSFetchRequest<Task> = Task.fetchRequest()
+        do {
+            toDoItems = try context.fetch(fetchRequest)
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -72,11 +83,8 @@ class TableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        
         let task = toDoItems[indexPath.row]
-
         cell.textLabel?.text = task.taskToDo
-
         return cell
     }
 
