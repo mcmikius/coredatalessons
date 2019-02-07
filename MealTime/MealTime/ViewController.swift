@@ -86,5 +86,20 @@ class ViewController: UIViewController, UITableViewDataSource {
         tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        guard let mealToDelete = person.meals?[indexPath.row] as? Meal, editingStyle == .delete else { return }
+        context.delete(mealToDelete)
+        
+        do {
+            try context.save()
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        } catch let error as NSError {
+            print("Error: \(error), description \(error.userInfo)")
+        }
+    }
 }
 
