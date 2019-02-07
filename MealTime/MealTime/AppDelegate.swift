@@ -10,10 +10,13 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
+    var coreDataStack = CoreDataStack()
   
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    // Override point for customization after application launch.
+    let navigationController = window?.rootViewController as! UINavigationController
+    let viewController = navigationController.topViewController as! ViewController
+    viewController.context = coreDataStack.persistentContainer.viewContext
     return true
   }
   
@@ -38,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    coreDataStack.saveContext()
   }
     
 }
